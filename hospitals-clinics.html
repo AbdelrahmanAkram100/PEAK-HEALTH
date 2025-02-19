@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peak Health</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+     <style>
+
+body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #524f4f;
+            background-color: #83aaa8;
+        }
+
+        .navbar {
+            background-color: #bed5e4;
+        }
+
+        .navbar .nav-link {
+            color: rgb(65, 95, 110) !important;
+        }
+
+        .carousel-caption {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        section {
+            padding: 60px 0;
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: #3f576e;
+        }
+
+        #about img,
+        #services img,
+        #offers img {
+            border-radius: 5px;
+        }
+
+        .card {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: none;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .btn-primary {
+            background-color: #70dab6;
+            border: none;
+        }
+
+        .testimonial {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        footer {
+            background: #6eabd3;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .bg-light {
+            background-color: #f8f9fa !important;
+        }
+
+        .rounded {
+            border-radius: 10px;
+        }
+
+        #offers img {
+            transition: transform 0.3s ease;
+        }
+
+        #offers img:hover {
+            transform: scale(1.05);
+        }
+
+        .form-section {
+            background-color: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 40px;
+        }
+
+        .form-section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .form-section .form-control {
+            border-radius: 10px;
+        }
+
+        .form-section .btn-primary {
+            width: 100%;
+        }
+    /* Logo Pop-Up on Page Load */
+    .logo {
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            opacity: 0; /* Start invisible */
+            transform: translateY(-20px); /* Start slightly above */
+            animation: popUp 1s ease-in-out forwards; /* Apply animation on page load */
+        }
+
+        @keyframes popUp {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Logo Pop-Up on Hover */
+        .navbar-brand:hover .logo {
+            transform: scale(1.1); /* Slightly enlarge on hover */
+        }
+
+        /* Lightbox Overlay */
+        .lightbox {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9); /* Semi-transparent black background */
+            justify-content: center;
+            align-items: center;
+            z-index: 1000; /* Ensure it's on top of everything */
+        }
+
+        .lightbox.show {
+            display: flex;
+        }
+
+        /* Enlarged Logo in Lightbox */
+        .lightbox-logo {
+            max-width: 90%;
+            max-height: 90%;
+            animation: zoomIn 0.3s ease; /* Smooth zoom-in effect */
+        }
+
+        @keyframes zoomIn {
+            0% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Close Button in Lightbox */
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 30px;
+            color: white;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+     </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#" onclick="openLightbox()">
+                <img src="unnamed__2_-removebg-preview (1).png" alt="Website Logo" height="90" class="logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="hospitals-clinics.html">Hospitals & Clinics</a></li>
+                    <li class="nav-item"><a class="nav-link" href="doctors.html">Doctors</a></li>
+                    <li class="nav-item"><a class="nav-link" href="health-insurance.html">Health Insurance</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- Lightbox Overlay -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <img src="unnamed__2_-removebg-preview (1).png" alt="Enlarged Logo" class="lightbox-logo">
+        <button class="close-btn" onclick="closeLightbox()">&times;</button>
+    </div>
+
+    <script>
+        // Function to open the lightbox
+        function openLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.add('show'); // Show the lightbox
+        }
+
+        // Function to close the lightbox
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('show'); // Hide the lightbox
+        }
+
+        // Close lightbox on Escape key press
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+    </script>
+
+     <!-- Hospitals & Clinics Section -->
+<section id="about" class="py-5 ">
+    <div class="container">
+        <h2 class="text-center m-1">Cleopatra Hospitals Group</h2>
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <img src="CECPqh4vgrK19J5mq2L17UOG1731147801978.webp" class="img-fluid rounded" alt="About Us">
+            </div>
+            <div class="col-lg-6">
+                <p>Cleopatra Hospital, part of the Cleopatra Hospitals Group (CHG), is a leading private healthcare provider in Egypt, renowned for its high-quality medical services and state-of-the-art facilities. Established in 1984 in Cairo, it has grown into the largest private healthcare network in the country, offering specialized care in cardiology, oncology, orthopedics, fertility, and more, through centers of excellence like the Cleopatra Heart Center and Cleopatra Oncology Center. Accredited by international bodies such as the Joint Commission International (JCI), the hospital is equipped with advanced technology, including robotic surgery and diagnostic imaging, and staffed by highly trained medical professionals. CHG, the first private healthcare group listed on the Egyptian Stock Exchange, continues to expand its services, focusing on patient-centric care, community health initiatives, and medical tourism, solidifying its reputation as a trusted name in Egypt’s healthcare sector.</p>
+                <a href="https://www.cleopatrahospitals.com/en/home/" class="btn btn-primary">Learn More</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="about" class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center m-1">Saudi German Hospital</h2>
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <p>Saudi German Hospital (SGH) is one of the leading private healthcare providers in the Middle East, known for its high-quality medical services and state-of-the-art facilities. Part of the Saudi German Health Group, the hospital was established in 1988 in Jeddah, Saudi Arabia, and has since expanded to become a network of hospitals across the Middle East, including branches in Dubai, Cairo, Riyadh, and Aseer. SGH is renowned for its patient-centric approach, offering a wide range of medical services, including specialized care in cardiology, oncology, orthopedics, neurology, and women’s health, as well as advanced surgical procedures and emergency care.</p>
+                <a href="https://sgheg.com/" class="btn btn-primary">Learn More</a>
+            </div>
+            <div class="col-lg-6">
+                <img src="saudi-german-hospital-bulding-1698657031.jpg" class="img-fluid rounded" alt="About Us">
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="about" class="py-5 ">
+    <div class="container">
+        <h2 class="text-center m-1">Dar Al Fouad Hospital</h2>
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <img src="1.jpg" class="img-fluid rounded" alt="About Us">
+            </div>
+            <div class="col-lg-6">
+                <p>Dar Al Fouad Hospital, founded in 1999, is one of Egypt’s leading healthcare institutions, offering world-class medical services across multiple specialties, including cardiology, oncology, neurology, nephrology, orthopedics, and organ transplantation. It has performed over 600 liver transplants and 250 bone marrow transplants, making it a leader in these fields in the Middle East and Africa. The hospital has affiliations with the Cleveland Clinic Foundation (USA) and holds Joint Commission International (JCI) accreditation, ensuring adherence to global healthcare standards. Its main branch is in 6th of October City, with a second state-of-the-art facility in Nasr City, opened in 2018 after a $120 million investment, offering advanced medical units for radiotherapy, chemotherapy, and specialized short-stay treatments. With a strong commitment to patient-centered care, Dar Al Fouad provides dedicated services for international patients, assisting with airport transfers, accommodation, and medical tourism needs.</p>
+                <a href="https://www.daralfouad.org/" class="btn btn-primary">Learn More</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="about" class="py-5 bg-light ">
+    <div class="container">
+        <h2 class="text-center m-1">As-Salam International Hospital</h2>
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <p>As-Salam International Hospital, established in 1982, is a premier tertiary care facility in Cairo, Egypt, and a key part of the Alameda Healthcare Group. Accredited by the Joint Commission International (JCI) and certified with ISO 9001 and ISO 14001, the hospital is committed to providing high-quality healthcare while maintaining strong environmental and safety standards. With over 700 physicians and 400 nurses, As-Salam offers advanced medical services across 31 specialties, including cardiology, oncology, neurology, nephrology, and orthopedics. It is also known for its renowned Liver and Kidney Transplant Unit and Renal Dialysis Unit, making it a leader in organ transplantation and kidney care in Egypt. The hospital operates multiple branches, including a state-of-the-art facility in New Cairo, ensuring accessibility to high-quality medical care. It maintains an affiliation with the Royal Free Hospital in London, enhancing its expertise and ensuring international medical standards.</p>
+                <a href="https://www.assih.com/" class="btn btn-primary">Learn More</a>
+            </div>
+            <div class="col-lg-6">
+                <img src="salam3-1672486196.jpg" class="img-fluid rounded" alt="About Us">
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="about" class="py-5 ">
+    <div class="container">
+        <h2 class="text-center m-1">Elite Hospital</h2>
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <img src="311612920_3643865059181910_800454083819094146_n.jpg" class="img-fluid rounded" alt="About Us">
+            </div>
+            <div class="col-lg-6">
+                <p>Elite Hospital in Egypt is a leading private healthcare facility known for its advanced medical technology, comprehensive services, and patient-centered care. It offers specialized treatments in cardiology, orthopedics, obstetrics, pediatrics, and more, supported by a team of highly qualified medical professionals. Equipped with state-of-the-art diagnostic and surgical tools, the hospital provides 24/7 emergency services, modern facilities, and international-standard care. Its focus on personalized treatment and holistic patient well-being has made it a trusted choice for both local and international patients seeking high-quality healthcare in Egypt.</p>
+                <a href="https://www.elitehospital.org/" class="btn btn-primary">Learn More</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="about" class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center m-1">57357 Hospital</h2>
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <p>57357 Hospital, also known as the Children's Cancer Hospital Egypt (CCHE), is a world-renowned, non-profit pediatric oncology hospital in Cairo, Egypt, providing free, high-quality cancer treatment to children. Equipped with advanced technology and following international protocols, it offers comprehensive care, including chemotherapy, radiation therapy, and bone marrow transplantation, alongside psychological, social, and educational support. Renowned for its high cure rates and holistic approach, the hospital relies on donations and community support to sustain its operations. Since its establishment in 2007, it has become a global model for healthcare excellence, combining cutting-edge treatment, research, and education to transform pediatric cancer care in the region and beyond.</p>
+                <a href="https://www.57357.org/en/home-page/" class="btn btn-primary">Learn More</a>
+            </div>
+            <div class="col-lg-6">
+                <img src="10-2.jpg" class="img-fluid rounded" alt="About Us">
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="about" class="py-5 ">
+    <div class="container">
+        <h2 class="text-center m-1">Andalusia Group</h2>
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <img src="f5ce4078f16b123f1f1a9d1974a80b1d6030bfac.jpg" class="img-fluid rounded" alt="About Us">
+            </div>
+            <div class="col-lg-6">
+                <p>Andalusia Group for Health Services, established in 1984, is a leading private healthcare provider in Egypt and the Middle East, offering a wide range of medical services, including general medicine, surgery, cardiology, orthopedics, obstetrics, pediatrics, and specialized treatments like oncology and fertility care. With a network of modern hospitals and clinics, such as Andalusia Hospital in Smouha and El Sheikh Zayed, the group is equipped with advanced medical technology and staffed by highly qualified professionals. Known for its patient-centered approach, international standards, and commitment to excellence, Andalusia Group has earned a strong reputation for delivering high-quality, compassionate healthcare and continues to expand its presence in the region. Andalusia Group for Health Services is a prominent healthcare provider in Egypt, renowned for its state-of-the-art facilities and comprehensive medical care. It operates multiple hospitals and clinics, including flagship locations in Smouha and El Sheikh Zayed, offering specialized services such as cardiology, orthopedics, fertility treatments, and women's health. The group prioritizes patient-centered care, combining advanced technology with personalized treatment plans to ensure optimal outcomes.</p>
+                <a href="https://andalusiagroup.net/" class="btn btn-primary">Learn More</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="about" class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center m-1">International Medical Center</h2>
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <p>The International Medical Center (IMC) in El Shorouk City, Cairo, Egypt, is a leading tertiary care hospital established in 2005 through collaboration between the Egyptian Armed Forces and the U.S. Army Corps of Engineers. It provides advanced medical and surgical services across multiple specialties, serving both military personnel and civilians. Accredited by the Joint Commission International (JCI), IMC upholds global healthcare standards and features state-of-the-art medical equipment, intensive care units, and a rehabilitation center. The facility also includes a hotel section for patients' families and international visitors. Located on the Cairo-Ismailia Desert Road (km 42), it plays a crucial role in Egypt’s healthcare sector.</p>
+                <a href="http://www.imc.org.eg/" class="btn btn-primary">Learn More</a>
+            </div>
+            <div class="col-lg-6">
+                <img src="20161205_1c00551_fingers_01-scaled.jpg" class="img-fluid rounded" alt="About Us">
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<footer>
+    <p>&copy; 2024 Peak Health. All Rights Reserved.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="main.js"></script>
+
+</body>
+
+</html>

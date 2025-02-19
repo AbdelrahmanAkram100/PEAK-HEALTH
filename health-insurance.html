@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peak Health</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+     <style>
+
+body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #524f4f;
+            background-color: #83aaa8;
+        }
+
+        .navbar {
+            background-color: #bed5e4;
+        }
+
+        .navbar .nav-link {
+            color: rgb(65, 95, 110) !important;
+        }
+
+        .carousel-caption {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        section {
+            padding: 60px 0;
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: #3f576e;
+        }
+
+        #about img,
+        #services img,
+        #offers img {
+            border-radius: 5px;
+        }
+
+        .card {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: none;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .btn-primary {
+            background-color: #70dab6;
+            border: none;
+        }
+
+        .testimonial {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        footer {
+            background: #6eabd3;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .bg-light {
+            background-color: #f8f9fa !important;
+        }
+
+        .rounded {
+            border-radius: 10px;
+        }
+
+        #offers img {
+            transition: transform 0.3s ease;
+        }
+
+        #offers img:hover {
+            transform: scale(1.05);
+        }
+
+        .form-section {
+            background-color: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 40px;
+        }
+
+        .form-section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .form-section .form-control {
+            border-radius: 10px;
+        }
+
+        .form-section .btn-primary {
+            width: 100%;
+        }
+    /* Logo Pop-Up on Page Load */
+    .logo {
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            opacity: 0; /* Start invisible */
+            transform: translateY(-20px); /* Start slightly above */
+            animation: popUp 1s ease-in-out forwards; /* Apply animation on page load */
+        }
+
+        @keyframes popUp {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Logo Pop-Up on Hover */
+        .navbar-brand:hover .logo {
+            transform: scale(1.1); /* Slightly enlarge on hover */
+        }
+
+        /* Lightbox Overlay */
+        .lightbox {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9); /* Semi-transparent black background */
+            justify-content: center;
+            align-items: center;
+            z-index: 1000; /* Ensure it's on top of everything */
+        }
+
+        .lightbox.show {
+            display: flex;
+        }
+
+        /* Enlarged Logo in Lightbox */
+        .lightbox-logo {
+            max-width: 90%;
+            max-height: 90%;
+            animation: zoomIn 0.3s ease; /* Smooth zoom-in effect */
+        }
+
+        @keyframes zoomIn {
+            0% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Close Button in Lightbox */
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 30px;
+            color: white;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+     </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#" onclick="openLightbox()">
+                <img src="unnamed__2_-removebg-preview (1).png" alt="Website Logo" height="90" class="logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="hospitals-clinics.html">Hospitals & Clinics</a></li>
+                    <li class="nav-item"><a class="nav-link" href="doctors.html">Doctors</a></li>
+                    <li class="nav-item"><a class="nav-link" href="health-insurance.html">Health Insurance</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- Lightbox Overlay -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <img src="unnamed__2_-removebg-preview (1).png" alt="Enlarged Logo" class="lightbox-logo">
+        <button class="close-btn" onclick="closeLightbox()">&times;</button>
+    </div>
+
+    <script>
+        // Function to open the lightbox
+        function openLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.add('show'); // Show the lightbox
+        }
+
+        // Function to close the lightbox
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('show'); // Hide the lightbox
+        }
+
+        // Close lightbox on Escape key press
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+    </script>
+
+    
+     <!-- Health Insurance Section -->
+<section id="about" class="py-5 ">
+    <div class="container">
+        <h2 class="text-center m-1">Allianz</h2>
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <img src="social_sharing_image-removebg-preview.png" class="img-fluid rounded" alt="About Us">
+            </div>
+            <div class="col-lg-6">
+                <p>Allianz Health Insurance offers a range of products, including individual, family, group, international, and critical illness insurance, designed to provide comprehensive coverage for medical expenses, preventive care, and wellness programs. With features like cashless treatment, 24/7 support, and flexible plans, Allianz caters to individuals, families, businesses, and expatriates. Backed by global presence, financial strength, and a commitment to sustainability, Allianz ensures reliable coverage and innovative solutions. The company also provides additional benefits such as telemedicine, second medical opinions, and wellness incentives, helping policyholders manage their health and well-being in a competitive and evolving market.</p>
+                <a href="https://www.allianz.com/en.html" class="btn btn-primary">Learn More</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="about" class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center m-1">MetLife</h2>
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <p>MetLife Health Insurance offers a range of products, including individual, family, group, international, and critical illness insurance, designed to provide comprehensive coverage for medical expenses, preventive care, and wellness programs. With features like cashless treatment, 24/7 support, and flexible plans, MetLife caters to individuals, families, businesses, and expatriates. Backed by global presence, financial strength, and a commitment to sustainability, MetLife ensures reliable coverage and innovative solutions. The company also provides additional benefits such as telemedicine, second medical opinions, and wellness incentives, helping policyholders manage their health and well-being in a competitive and evolving market.</p>
+                <a href="https://www.metlife.com/" class="btn btn-primary">Learn More</a>
+            </div>
+            <div class="col-lg-6">
+                <img src="met-life-des-foundations-standards-logo-asset-01-removebg-preview.png" class="img-fluid rounded" alt="About Us">
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<section id="about" class="py-5 ">
+    <div class="container">
+        <h2 class="text-center m-1">Aetna</h2>
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <img src="Aetna-Logo-700x394.png" class="img-fluid rounded" alt="About Us">
+            </div>
+            <div class="col-lg-6">
+                <p>Aetna Health Insurance, a subsidiary of CVS Health, is a leading provider offering a variety of plans, including individual/family, employer-sponsored, Medicare, Medicaid, and dental/vision coverage. Known for its nationwide network, Aetna provides access to a wide range of healthcare providers and integrates with CVS Health for added convenience. Members benefit from digital tools, wellness programs, and additional perks like telehealth services and discounted pharmacy care. While Aetna offers robust options, including strong Medicare Advantage plans, premiums and network restrictions may vary. Enrollment is available through the Health Insurance Marketplace, employers, or directly via Aetna’s website, with customer support readily accessible.</p>
+                <a href="https://www.aetna.com/" class="btn btn-primary">Learn More</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<section id="about" class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center m-1">AXA</h2>
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <p>AXA Health Insurance offers a range of products, including individual, family, group, international, and critical illness insurance, designed to provide comprehensive coverage for medical expenses, preventive care, and wellness programs. With features like cashless treatment, 24/7 support, and flexible plans, AXA caters to individuals, families, businesses, and expatriates. Backed by global presence, financial strength, and a commitment to sustainability, AXA ensures reliable coverage and innovative solutions. The company also provides additional benefits such as telemedicine, second medical opinions, and wellness incentives, helping policyholders manage their health and well-being in a competitive and evolving market.</p>
+                <a href="https://axa.com/" class="btn btn-primary">Learn More</a>
+            </div>
+            <div class="col-lg-6">
+                <img src="AXA-Symbol-removebg-preview.png" class="img-fluid rounded" alt="About Us">
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<section id="about" class="py-5 ">
+    <div class="container">
+        <h2 class="text-center m-1">GIG</h2>
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <img src="6506a57c7cb87_1694934396-removebg-preview.png" class="img-fluid rounded" alt="About Us">
+            </div>
+            <div class="col-lg-6">
+                <p>GIG Health Insurance, part of Gulf Insurance Group, is a leading provider in the MENA region, offering comprehensive and customizable health insurance plans for individuals, families, and businesses. Known for its extensive network of healthcare providers, GIG covers hospitalization, outpatient care, maternity, dental, and vision services, with some plans including international coverage and wellness programs. The company emphasizes customer service, providing digital tools for policy management and 24/7 support. While premiums can be higher for extensive coverage, GIG’s flexible plans and focus on expatriates and travelers make it a popular choice. Enrollment is straightforward through their website or representatives, with options tailored to diverse needs.</p>
+                <a href="https://www.gig.com.eg/" class="btn btn-primary">Learn More</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="about" class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center m-1">Bupa</h2>
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <p>Bupa is a global healthcare provider offering various health insurance plans, including comprehensive coverage, mental health support, and 24/7 health advice. It has been recognized as a trusted brand, particularly in Australia, where it recently introduced free telehealth doctor consultations for members. However, it has faced challenges, such as contract disputes with hospital operators like Healthscope. While Bupa does not have a direct presence in Egypt, international plans may be available for expatriates or frequent travelers. Customers should check directly with Bupa or local brokers for suitable options.</p>
+                <a href="https://www.googleadservices.com/pagead/aclk?sa=L&ai=DChcSEwiN0t7artCLAxXJkVAGHXzNJxkYABAAGgJkZw&co=1&ase=2&gclid=CjwKCAiAn9a9BhBtEiwAbKg6fiFu0rFuNFxcHaJ6acoAVdA3BjApCrwuSRkDKJ296gFGw_FZyZW1_xoCgmQQAvD_BwE&ohost=www.google.com&cid=CAESVuD2r-WE2PPMbCYdjklTA5CcWySYni5DlYFjMzJHt1zEH-z_gzV59UqMTxep_LuJ4uVY6baap2AJSXeSvH5Srzxh1zAWmMpHZagQ6kAq8SMVnF-bIEDZ&sig=AOD64_1Ze7dQw7p23CksHurk7a0SMGPDUA&q&nis=4&adurl&ved=2ahUKEwiJ9NfartCLAxX5QkEAHVibOBUQ0Qx6BAgIEAE" class="btn btn-primary">Learn More</a>
+            </div>
+            <div class="col-lg-6">
+                <img src="bupa-vector-logo-removebg-preview.png" class="img-fluid rounded" alt="About Us">
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<footer>
+    <p>&copy; 2024 Peak Health. All Rights Reserved.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="main.js"></script>
+
+</body>
+
+</html>

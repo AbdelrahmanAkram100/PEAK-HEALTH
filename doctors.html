@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peak Health</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+     <style>
+
+body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #524f4f;
+            background-color: #83aaa8;
+        }
+
+        .navbar {
+            background-color: #bed5e4;
+        }
+
+        .navbar .nav-link {
+            color: rgb(65, 95, 110) !important;
+        }
+
+        .carousel-caption {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        section {
+            padding: 60px 0;
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: #3f576e;
+        }
+
+        #about img,
+        #services img,
+        #offers img {
+            border-radius: 5px;
+        }
+
+        .card {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: none;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .btn-primary {
+            background-color: #70dab6;
+            border: none;
+        }
+
+        .testimonial {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        footer {
+            background: #6eabd3;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .bg-light {
+            background-color: #f8f9fa !important;
+        }
+
+        .rounded {
+            border-radius: 10px;
+        }
+
+        #offers img {
+            transition: transform 0.3s ease;
+        }
+
+        #offers img:hover {
+            transform: scale(1.05);
+        }
+
+        .form-section {
+            background-color: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 40px;
+        }
+
+        .form-section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .form-section .form-control {
+            border-radius: 10px;
+        }
+
+        .form-section .btn-primary {
+            width: 100%;
+        }
+    /* Logo Pop-Up on Page Load */
+    .logo {
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            opacity: 0; /* Start invisible */
+            transform: translateY(-20px); /* Start slightly above */
+            animation: popUp 1s ease-in-out forwards; /* Apply animation on page load */
+        }
+
+        @keyframes popUp {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Logo Pop-Up on Hover */
+        .navbar-brand:hover .logo {
+            transform: scale(1.1); /* Slightly enlarge on hover */
+        }
+
+        /* Lightbox Overlay */
+        .lightbox {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9); /* Semi-transparent black background */
+            justify-content: center;
+            align-items: center;
+            z-index: 1000; /* Ensure it's on top of everything */
+        }
+
+        .lightbox.show {
+            display: flex;
+        }
+
+        /* Enlarged Logo in Lightbox */
+        .lightbox-logo {
+            max-width: 90%;
+            max-height: 90%;
+            animation: zoomIn 0.3s ease; /* Smooth zoom-in effect */
+        }
+
+        @keyframes zoomIn {
+            0% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Close Button in Lightbox */
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 30px;
+            color: white;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+     </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#" onclick="openLightbox()">
+                <img src="unnamed__2_-removebg-preview (1).png" alt="Website Logo" height="90" class="logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="hospitals-clinics.html">Hospitals & Clinics</a></li>
+                    <li class="nav-item"><a class="nav-link" href="doctors.html">Doctors</a></li>
+                    <li class="nav-item"><a class="nav-link" href="health-insurance.html">Health Insurance</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- Lightbox Overlay -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <img src="unnamed__2_-removebg-preview (1).png" alt="Enlarged Logo" class="lightbox-logo">
+        <button class="close-btn" onclick="closeLightbox()">&times;</button>
+    </div>
+
+    <script>
+        // Function to open the lightbox
+        function openLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.add('show'); // Show the lightbox
+        }
+
+        // Function to close the lightbox
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('show'); // Hide the lightbox
+        }
+
+        // Close lightbox on Escape key press
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+    </script>
+
+
+
+    <!-- Doctors Section -->
+    <section class="py-5 ">
+        <div class="container">
+            <h2 class="text-center mb-5">Dr.Magdy Yacoub</h2>
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <p>Sir Magdi Habib Yacoub is one of the world’s most celebrated cardiac surgeons, known for his groundbreaking contributions to heart surgery and transplantation. Born in Egypt in 1935, he studied medicine at Cairo University before moving to the UK, where he became a pioneer in cardiothoracic surgery. Yacoub performed the UK’s first heart-lung transplant in 1983 and established the heart transplantation program at Harefield Hospital, which grew into one of the largest and most successful in the world. His work in heart valve repair, congenital heart disease, and tissue engineering has revolutionized cardiac care, saving countless lives and setting new standards in the field</p>
+                <p>In addition to his surgical achievements, Yacoub has made significant contributions to medical research and education. He has been a leading figure in regenerative medicine, exploring the use of stem cells to repair damaged heart tissue and developing "living" heart valves that can grow with patients. As a professor at Imperial College London, he has trained generations of surgeons and published over 1,000 scientific papers. His dedication to advancing medical knowledge and techniques has cemented his reputation as a global leader in cardiac surgery.</p>
+                <p>Beyond his clinical and academic work, Yacoub is a passionate humanitarian. In 1995, he founded the Chain of Hope charity, which provides life-saving cardiac surgery to children in developing countries. His efforts have brought advanced cardiac care to underserved regions, particularly in Africa and the Middle East. Knighted in 1992 and honored with numerous awards, including Egypt’s Order of the Nile, Yacoub’s legacy is one of innovation, compassion, and an unwavering commitment to improving lives through medicine.</p>
+                </div>
+                <div class="col-lg-6">
+                    <img src="524de8dcb9e07e2f482d83c98641a5d2.jpg" class="img-fluid rounded" alt="More About Us">
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="py-5 bg-light ">
+        <div class="container">
+            <h2 class="text-center mb-5">Dr. Mohamed Ghoneim</h2>
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <img src="Mohamed_Ghoneim_2.png" class="img-fluid rounded" alt="Our Journey">
+                </div>
+                <div class="col-lg-6">
+                    <p>Dr. Mohamed Ghoneim is a world-renowned Egyptian urologist, celebrated for his groundbreaking contributions to urological surgery. Born in 1939, he is best known for developing the Ghoneim Procedure (or Cairo Technique), a revolutionary method for bladder reconstruction using intestinal segments, which has significantly improved the quality of life for patients with bladder cancer or congenital defects. Dr. Ghoneim also made significant advancements in kidney transplantation and urinary diversion, establishing himself as a global leader in urology. As the Chairman of Urology at Mansoura University, he founded the Mansoura Urology and Nephrology Centre, a leading institution in the Middle East and Africa for urological care and kidney transplantation.</p>
+                <p>Dr. Ghoneim has published over 400 scientific papers, trained countless urologists, and received numerous international awards, including recognition from the American Urological Association and the European Association of Urolog.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="py-5 ">
+        <div class="container">
+            <h2 class="text-center mb-5">Dr. Ahmed El-Sobky</h2>
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <p>Dr. Ahmed El-Sobky is a leading Egyptian orthopedic surgeon specializing in bone tumors, joint replacements, and complex orthopedic conditions. Known for his innovative limb-sparing surgeries for bone tumors and expertise in hip and knee replacements, including revision surgeries, he has significantly advanced orthopedic care in Egypt and the Middle East. A graduate of Cairo University with advanced international training, Dr. El-Sobky is also an active researcher, educator, and member of prestigious organizations like the American Academy of Orthopaedic Surgeons (AAOS). Committed to community service, he participates in medical missions and free surgical camps, providing life-changing care to underserved populations, and continues to inspire through his dedication to improving patient outcomes and advancing the field of orthopedics.</p>
+                </div>
+                <div class="col-lg-6">
+                    <img src="Egypt-to-launch-first-national-electronic-platform-.jpg" class="img-fluid rounded" alt="More About Us">
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="py-5 bg-light ">
+        <div class="container">
+            <h2 class="text-center mb-5">Dr. Hassan Hussany</h2>
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <img src="unnamed.jpg" class="img-fluid rounded" alt="Our Journey">
+                </div>
+                <div class="col-lg-6">
+                    <p>Dr. Hassan Hassany is a distinguished consultant in the field of neurology, renowned for his expertise in diagnosing and managing a wide range of neurological disorders. With years of experience, he has established himself as a trusted medical professional, offering specialized care to patients dealing with conditions such as epilepsy, stroke, migraines, multiple sclerosis, Parkinson’s disease, and peripheral nerve disorders. His deep understanding of the complexities of the nervous system allows him to provide accurate diagnoses and effective treatment plans tailored to each patient’s unique needs. Dr. Hassany is committed to staying updated with the latest advancements in neurology, ensuring that his patients receive the most modern and evidence-based care available.</p>
+                <p>In addition to his clinical practice, Dr. Hassany is actively involved in medical research and education, contributing to the broader field of neurology. He participates in scientific studies and clinical trials aimed at improving treatment options for neurological diseases. His work often includes collaborating with other specialists to explore innovative therapies and technologies that can enhance patient outcomes. Dr. Hassany also shares his knowledge by mentoring young doctors and participating in medical conferences, where he presents his findings and discusses emerging trends in neurology.</p>
+            </div>
+            </div>
+        </div>
+    </section>
+
+
+    
+
+<footer>
+    <p>&copy; 2024 Peak Health. All Rights Reserved.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="main.js"></script>
+
+</body>
+</html>
