@@ -188,29 +188,35 @@
         }
 
 
-        /* Magazine Section Styling */
+      /* Magazine Section Styling */
 .magazine-section {
-    padding: 50px 0;
-    background-color: #f9f9f9;
+    padding: 80px 0;
+    background: linear-gradient(135deg, #aab6b9, #0578d6); /* Gradient background */
     text-align: center;
+    color: #fff; /* White text for contrast */
 }
 
 .section-title {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-    color: #333;
+    font-size: 3rem;
+    margin-bottom: 15px;
+    font-family: 'Montserrat', sans-serif; /* Modern font */
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #0c76b3; /* Gold color for the title */
 }
 
 .section-description {
-    font-size: 1.2rem;
-    color: #666;
-    margin-bottom: 30px;
+    font-size: 1.25rem;
+    margin-bottom: 40px;
+    font-family: 'Open Sans', sans-serif; /* Clean font */
+    color: #e0e0e0; /* Light gray for description */
 }
 
 .magazine-images {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 30px;
     flex-wrap: wrap;
 }
 
@@ -218,20 +224,68 @@
     flex: 1 1 45%;
     max-width: 45%;
     text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+}
+
+.magazine-image:hover {
+    transform: translateY(-10px); /* Lift image on hover */
 }
 
 .magazine-image img {
     max-width: 100%;
     height: auto;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 3px solid #fff; /* White border */
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Deeper shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+}
+
+.magazine-image img:hover {
+    transform: scale(1.05); /* Slightly enlarge image on hover */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4); /* Enhanced shadow on hover */
 }
 
 .image-caption {
-    margin-top: 10px;
+    margin-top: 15px;
+    font-size: 1.1rem;
+    font-family: 'Open Sans', sans-serif;
+    color: #c9c2b8; /* Gold color for captions */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .magazine-image {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+
+    .section-title {
+        font-size: 2.5rem;
+    }
+
+    .section-description {
+        font-size: 1.1rem;
+    }
+}
+
+.btn-download {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 12px 24px;
+    background-color: #bdc0c2;
+    color: #333;
+    font-family: 'Montserrat', sans-serif;
     font-size: 1rem;
-    color: #555;
+    font-weight: 600;
+    text-transform: uppercase;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-download:hover {
+    background-color: #0ed8ce;
+    transform: translateY(-3px);
 }
     </style>
 </head>
@@ -509,24 +563,33 @@
 
 
 
-    <!-- Magazine Section -->
+
+<!-- Magazine Section -->
 <section id="magazine-section" class="magazine-section">
     <div class="container">
         <h2 class="section-title">Our Magazine</h2>
-        <p class="section-description">Check out the latest issue of our magazine!</p>
-        
+        <!-- Magazine Images -->
         <div class="magazine-images">
             <!-- Front Cover -->
             <div class="magazine-image">
-                <img src="Screenshot_19-2-2025_205150_.jpeg" alt="Magazine Front Cover" class="img-fluid" />
+                <a href="Screenshot_19-2-2025_205150_.jpeg" target="_blank">
+                    <img src="Screenshot_19-2-2025_205150_.jpeg" alt="Magazine Front Cover" class="img-fluid" />
+                </a>
                 <p class="image-caption">Front Cover</p>
             </div>
 
             <!-- Back Cover -->
             <div class="magazine-image">
-                <img src="~/images/magazine-back.jpg" alt="Magazine Back Cover" class="img-fluid" />
+                <a href="Screenshot_20-2-2025_13834_.jpeg" target="_blank">
+                    <img src="Screenshot_20-2-2025_13834_.jpeg" alt="Magazine Back Cover" class="img-fluid" />
+                </a>
                 <p class="image-caption">Back Cover</p>
             </div>
+        </div>
+
+        <!-- Download Button -->
+        <div class="download-button">
+            <a href="PEAK HALTH Magazine.jpeg" download class="btn-download">See Our Full Magazine</a>
         </div>
     </div>
 </section>
